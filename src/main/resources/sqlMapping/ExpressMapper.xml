@@ -6,8 +6,8 @@
         <id property="id" column="id" jdbcType="INTEGER"/>
         <result property="expressNo" column="express_no" jdbcType="VARCHAR"/>
         <result property="fromDate" column="from_date" jdbcType="DATE"/>
-        <result property="toDate" column="to_date" jdbcType="DATE"/>
-        <result property="getDate" column="get_date" jdbcType="DATE"/>
+        <result property="arriveDate" column="arrive_date" jdbcType="DATE"/>
+        <result property="receiveDate" column="receive_date" jdbcType="DATE"/>
         <result property="company" column="company" jdbcType="VARCHAR"/>
         <result property="consignee" column="consignee" jdbcType="VARCHAR"/>
         <result property="contact" column="contact" jdbcType="VARCHAR"/>
@@ -15,6 +15,7 @@
         <result property="addressSource" column="address_source" jdbcType="VARCHAR"/>
         <result property="addressDest" column="address_dest" jdbcType="VARCHAR"/>
         <result property="status" column="express_status" jdbcType="VARCHAR"/>
+        <result property="location" column="location" jdbcType="VARCHAR"/>
     </resultMap>
 
     <insert id="insertExpressInfo" >
