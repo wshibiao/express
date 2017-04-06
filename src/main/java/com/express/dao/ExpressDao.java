@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Param;
  */
 public interface ExpressDao {
     /**
-     * 查询快递信息
+     * 查询快递的信息
      * @param contact
      * @param expressNo
      * @return

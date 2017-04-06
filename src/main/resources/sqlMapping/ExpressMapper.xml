@@ -20,7 +20,7 @@
 
     <insert id="insertExpressInfo" >
         INSERT INTO into express VALUES (#{addressDest},#{addressSource},#{company},#{contact},#{fromDate},#{expressNo},
-        #{getDate},#{id},#{verificationCode},#{toDate},#{consignee});
+        #{getDate},#{id},#{verificationCode},#{toDate},#{consignee},#{localtion},#{status});
     </insert>
 
     <update id="updateExpressInfo">

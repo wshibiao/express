@@ -58,7 +58,7 @@ public class Express implements Serializable {
      */
     private String status;
     /**
-     * 存放位置
+     * 快递存放位置
      */
     private String location;
 
