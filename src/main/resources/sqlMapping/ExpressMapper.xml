@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.express.dao.ExpressDao">
+    <resultMap id="expressResult" type="com.express.model.Express">
+        <id property="id" column="id" jdbcType="INTEGER"/>
+        <result property="expressNo" column="express_no" jdbcType="VARCHAR"/>
+        <result property="fromDate" column="from_date" jdbcType="DATE"/>
+        <result property="toDate" column="to_date" jdbcType="DATE"/>
+        <result property="getDate" column="get_date" jdbcType="DATE"/>
+        <result property="company" column="company" jdbcType="VARCHAR"/>
+        <result property="consignee" column="consignee" jdbcType="VARCHAR"/>
+        <result property="contact" column="contact" jdbcType="VARCHAR"/>
+        <result property="verificationCode" column="verification_code" jdbcType="VARCHAR"/>
+        <result property="addressSource" column="address_source" jdbcType="VARCHAR"/>
+        <result property="addressDest" column="address_dest" jdbcType="VARCHAR"/>
+        <result property="status" column="express_status" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <insert id="insertExpressInfo" >
+        INSERT INTO into express VALUES (#{addressDest},#{addressSource},#{company},#{contact},#{fromDate},#{expressNo},
+        #{getDate},#{id},#{verificationCode},#{toDate},#{consignee});
+    </insert>
+
+    <update id="updateExpressInfo">
+        UPDATE
+        express
+        set
+        express_status=#{status}
+        and
+        get_date=#{getDate}
+        where
+        express_no=#{expressNo}
+    </update>
+
+    <select id="queryExpressInfo" resultMap="expressResult">
+        SELECT *
+        FROM express
+        where
+    </select>
+
+</mapper> 
