@@ -15,17 +15,17 @@
         <result property="addressSource" column="address_source" jdbcType="VARCHAR"/>
         <result property="addressDest" column="address_dest" jdbcType="VARCHAR"/>
         <result property="status" column="express_status" jdbcType="VARCHAR"/>
-        <result property="location" column="location" jdbcType="VARCHAR"/>
     </resultMap>
 
-    <insert id="insertExpressInfo" >
-        INSERT INTO into express VALUES (#{addressDest},#{addressSource},#{company},#{contact},#{fromDate},#{expressNo},
-        #{getDate},#{id},#{verificationCode},#{toDate},#{consignee},#{localtion},#{status});
+    <insert id="insertExpressInfo" useGeneratedKeys="true"
+            keyProperty="id">
+        INSERT INTO  express.expressinfo VALUES (#{addressDest},#{addressSource},#{company},#{contact},#{fromDate},#{expressNo},
+        #{getDate},#{verificationCode},#{toDate},#{consignee},#{status});
     </insert>
 
     <update id="updateExpressInfo">
         UPDATE
-        express
+        express.expressinfo
         set
         express_status=#{status}
         and
@@ -36,8 +36,11 @@
 
     <select id="queryExpressInfo" resultMap="expressResult">
         SELECT *
-        FROM express
+        FROM express.expressinfo
         where
     </select>
 
+    <delete id="deleteExpress">
+        DELETE from express.expressinfo WHERE express_no=#{expressNo}
+    </delete>
 </mapper> 

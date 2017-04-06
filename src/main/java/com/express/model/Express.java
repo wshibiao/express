@@ -57,21 +57,9 @@ public class Express implements Serializable {
      * 取件状态
      */
     private String status;
-    /**
-     * 快递存放位置
-     */
-    private String location;
 
     public void setReceiveDate(Date receiveDate) {
         this.receiveDate = receiveDate;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
     }
 
     public String getStatus() {

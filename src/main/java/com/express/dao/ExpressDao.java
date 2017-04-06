@@ -15,4 +15,9 @@ public interface ExpressDao {
      */
     public Express queryExpressInfo(@Param("contact")String contact, @Param("expressNo")String expressNo);
 
+    /**
+     *
+     * @param expressNo
+     */
+    public void deleteExpress(@Param("expressNo")String expressNo);
 }
