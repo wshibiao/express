@@ -9,11 +9,11 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class SendSMSTimer implements IExecuteTimer {
-    //每天早上8点
-    @Scheduled(cron="0 00 08 * * ? * ")
-    @Override
-    public void execute() {
+	// 每天早上8点
+	@Scheduled(cron = "0 0 8 * * ?")
+	@Override
+	public void execute() {
 
-    }
+	}
 
 }
