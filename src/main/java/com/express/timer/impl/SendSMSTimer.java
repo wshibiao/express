@@ -13,7 +13,12 @@ public class SendSMSTimer implements IExecuteTimer {
 	@Scheduled(cron = "0 0 8 * * ?")
 	@Override
 	public void execute() {
-
+		System.out.println("This is timer running");
 	}
-
+	
+	//每隔3小时
+	@Scheduled(cron = "0 0 0/3 * * ?")
+	public void sendMessage(){
+		System.out.println("This is send message timer running");
+	}
 }
