@@ -17,66 +17,71 @@
         <result property="expressStatus" column="express_status" jdbcType="VARCHAR"/>
     </resultMap>
 
-    <insert id="insertExpress" useGeneratedKeys="true"
+    <insert id="insertExpressInfo" useGeneratedKeys="true"
             keyProperty="id">
-        INSERT INTO  express.expressinfo(express_no, from_date, arrive_date, receive_date, company
+        INSERT INTO  express.expressinfo(id,express_no, from_date, arrive_date, receive_date, company
            , consignee, contact, verification_code, address_source, address_dest, express_status)
-        VALUES (#{expressNo},#{fromDate}, #{arriveDate},#{receiveDate},#{company},#{consignee},#{contact}
+        VALUES (#{id},#{expressNo},#{fromDate}, #{arriveDate},#{receiveDate},#{company},#{consignee},#{contact}
         ,#{verificationCode},#{addressSource},#{addressDest},#{expressStatus});
     </insert>
 
-    <update id="updateExpressInfo">
+    <update id="updateExpressInfo" >
         UPDATE
         express.expressinfo
-        set
+        <set>
             <if test="expressNo!=null" >
-                express_no=#{expressNo}
+                express_no=#{expressNo},
             </if>
-        and
-            <if test="fromDate！=null">
-               from_date =#{fromDate}
+
+            <if test="fromDate!=null">
+               from_date =#{fromDate},
             </if>
-        and
+
             <if test="arriveDate!=null">
-              arrive_date=#{arriveDate}
+              arrive_date=#{arriveDate,jdbcType=DATE},
             </if>
-        and
-            <if test="receiveDate">
-              receive_date=#{receiveDate}
+
+            <if test="receiveDate!=null">
+              receive_date=#{receiveDate,jdbcType=DATE},
             </if>
-        and
-            <if test="company">
-              company=#{company}
+
+            <if test="company!=null">
+              company=#{company},
             </if>
-        and
-            <if test="consignee">
-              consignee=#{consignee}
+            <if test="contact!=null">
+              contact=#{contact},
             </if>
-        and
-            <if test="verificationCode">
-              contact=#{contact}
+
+            <if test="consignee!=null">
+              consignee=#{consignee},
             </if>
-        and
-            <if test="receiveDate">
-              verification_code=#{verificationCode}
+
+            <if test="verificationCode!=null">
+              contact=#{contact},
             </if>
-        and
-            <if test="addressSource">
-              address_source=#{addressSource}
+
+            <if test="receiveDate!=null">
+              verification_code=#{verificationCode},
             </if>
-        and
-            <if test="addressDest">
-              address_dest=#{addressDest}
+
+            <if test="addressSource!=null">
+              address_source=#{addressSource},
             </if>
-        and
-            <if test="expressStatus">
+
+            <if test="addressDest!=null">
+              address_dest=#{addressDest},
+            </if>
+
+            <if test="expressStatus!=null">
               express_status=#{expressStatus}
             </if>
+        </set>
+          where id=#{id}
     </update>
 
     <select id="queryExpressInfo" resultMap="expressResult">
         SELECT
-        express_no, from_date, arrive_date, receive_date, company
+        id,express_no, from_date, arrive_date, receive_date, company
         , consignee, contact, verification_code, address_source, address_dest, express_status
         FROM   express.expressinfo
         where
@@ -91,7 +96,7 @@
 
     <select id="getExpressInfoById" resultMap="expressResult">
         SELECT
-        express_no, from_date, arrive_date, receive_date, company
+        id,express_no, from_date, arrive_date, receive_date, company
            , consignee, contact, verification_code, address_source, address_dest, express_status
         FROM express.expressinfo
         where
