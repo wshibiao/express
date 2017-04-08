@@ -6,7 +6,7 @@ public class OverDueExpress {
 	
 	private int overDueShelfId;
 
-	private int expressinfoId;
+	private Express express;
 
 	private Date createDate;
 
@@ -20,15 +20,15 @@ public class OverDueExpress {
 		this.overDueShelfId = overDueShelfId;
 	}
 
-	public int getExpressinfoId() {
-		return expressinfoId;
-	}
+    public Express getExpress() {
+        return express;
+    }
 
-	public void setExpressinfoId(int expressinfoId) {
-		this.expressinfoId = expressinfoId;
-	}
+    public void setExpress(Express express) {
+        this.express = express;
+    }
 
-	public Date getCreateDate() {
+    public Date getCreateDate() {
 		return createDate;
 	}
 
