@@ -12,7 +12,7 @@
 	<insert id="insertExpressShelf" useGeneratedKeys="true"
 		keyProperty="shelfId">
 		insert into expressshelf values
-		(#{shelfId},#{expressInfoId},#{createDate},#{status});
+		(#{shelfId},#{express},#{createDate},#{status});
 	</insert>
 
 	<update id="updateExpressShelf">
@@ -29,6 +29,14 @@
 			</if>
 		</set>
 		where shelf_id = #{shelfId}
+	</update>
+	<update id="clearExpressShelf">
+			update expressshelf
+				SET expressinfo_id=NULL ,
+				create_date=NULL ,
+				shelf_status='N'
+			WHERE
+				shelf_id=#{shelfId}
 	</update>
 
 	<select id="queryShelfByParams" resultMap="expressShelfResult">
@@ -48,6 +56,10 @@
 				and shelf_status = #{status}
 			</if>
 		</where>
+	</select>
+	<select id="queryAllShelfExpress" resultMap="expressShelfResult">
+		select shelf_id,expressinfo_id,create_date,shelf_status
+		from expressshelf
 	</select>
 
 </mapper> 

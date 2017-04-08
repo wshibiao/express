@@ -11,16 +11,16 @@
 	</resultMap>
 
 	<insert id="insertOverDueExpress" useGeneratedKeys="true"
-		keyProperty="shelfId">
+		keyProperty="overDueShelfId">
 		insert into overdueexpress values
-		(#{shelfId},#{expressInfoId},#{createDate},#{status});
+		(#{overDueShelfId},#{express.id},#{createDate},#{status});
 	</insert>
 
 	<update id="updateExpressShelf">
 		update overdueexpress
 		<set>
-			<if test="expressInfoId != null">
-				expressinfo_id = #{expressInfoId},
+			<if test="express != null">
+				expressinfo_id = #{express},
 			</if>
 			<if test="createDate != null">
 				create_date = #{createDate},
