@@ -1,47 +1,47 @@
 package com.express.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class ExpressShelf {
+/**
+ * Created by wshibiao on 2017/4/6.
+ */
+public class ExpressShelf implements Serializable{
+        private static final long serialVersionUID = 1L;
+        private Long shelfId;
+        private Express express;
+        private Date createDate;
+        private String shelfStatus;
 
-	private int shelfId;
+        public Long getShelfId() {
+                return shelfId;
+        }
 
-	private int expressInfoId;
+        public void setShelfId(Long shelfId) {
+                this.shelfId = shelfId;
+        }
 
-	private Date createDate;
+        public Express getExpress() {
+                return express;
+        }
 
-	private String status;
+        public void setExpress(Express express) {
+                this.express = express;
+        }
 
-	public int getShelfId() {
-		return shelfId;
-	}
+        public Date getCreateDate() {
+                return createDate;
+        }
 
-	public void setShelfId(int shelfId) {
-		this.shelfId = shelfId;
-	}
+        public void setCreateDate(Date createDate) {
+                this.createDate = createDate;
+        }
 
-	public int getExpressinfoId() {
-		return expressInfoId;
-	}
+        public String getShelfStatus() {
+                return shelfStatus;
+        }
 
-	public void setExpressinfoId(int expressInfoId) {
-		this.expressInfoId = expressInfoId;
-	}
-
-	public Date getCreateDate() {
-		return createDate;
-	}
-
-	public void setCreateDate(Date createDate) {
-		this.createDate = createDate;
-	}
-
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
-
+        public void setShelfStatus(String shelfStatus) {
+                this.shelfStatus = shelfStatus;
+        }
 }

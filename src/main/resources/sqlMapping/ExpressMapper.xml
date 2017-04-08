@@ -14,7 +14,7 @@
         <result property="verificationCode" column="verification_code" jdbcType="VARCHAR"/>
         <result property="addressSource" column="address_source" jdbcType="VARCHAR"/>
         <result property="addressDest" column="address_dest" jdbcType="VARCHAR"/>
-        <result property="expressStatus" column="express_status" jdbcType="VARCHAR"/>
+        <result property="status" column="express_status" jdbcType="VARCHAR"/>
     </resultMap>
 
     <insert id="insertExpressInfo" useGeneratedKeys="true"
