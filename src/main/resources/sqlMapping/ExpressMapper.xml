@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>  
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.express.dao.ExpressDao">
-    <resultMap id="expressResult" type="com.express.model.Express">
+<mapper namespace="com.express.dao.ExpressDao" >
+    <resultMap  type="com.express.model.Express" id="expressResult">
         <id property="id" column="id" jdbcType="INTEGER"/>
         <result property="expressNo" column="express_no" jdbcType="VARCHAR"/>
         <result property="fromDate" column="from_date" jdbcType="DATE"/>
@@ -14,30 +14,91 @@
         <result property="verificationCode" column="verification_code" jdbcType="VARCHAR"/>
         <result property="addressSource" column="address_source" jdbcType="VARCHAR"/>
         <result property="addressDest" column="address_dest" jdbcType="VARCHAR"/>
-        <result property="status" column="express_status" jdbcType="VARCHAR"/>
+        <result property="expressStatus" column="express_status" jdbcType="VARCHAR"/>
     </resultMap>
 
-    <insert id="insertExpressInfo" useGeneratedKeys="true"
+    <insert id="insertExpress" useGeneratedKeys="true"
             keyProperty="id">
-        INSERT INTO  express.expressinfo VALUES (#{addressDest},#{addressSource},#{company},#{contact},#{fromDate},#{expressNo},
-        #{getDate},#{verificationCode},#{toDate},#{consignee},#{status});
+        INSERT INTO  express.expressinfo(express_no, from_date, arrive_date, receive_date, company
+           , consignee, contact, verification_code, address_source, address_dest, express_status)
+        VALUES (#{expressNo},#{fromDate}, #{arriveDate},#{receiveDate},#{company},#{consignee},#{contact}
+        ,#{verificationCode},#{addressSource},#{addressDest},#{expressStatus});
     </insert>
 
     <update id="updateExpressInfo">
         UPDATE
         express.expressinfo
         set
-        express_status=#{status}
+            <if test="expressNo!=null" >
+                express_no=#{expressNo}
+            </if>
         and
-        get_date=#{getDate}
-        where
-        express_no=#{expressNo}
+            <if test="fromDate！=null">
+               from_date =#{fromDate}
+            </if>
+        and
+            <if test="arriveDate!=null">
+              arrive_date=#{arriveDate}
+            </if>
+        and
+            <if test="receiveDate">
+              receive_date=#{receiveDate}
+            </if>
+        and
+            <if test="company">
+              company=#{company}
+            </if>
+        and
+            <if test="consignee">
+              consignee=#{consignee}
+            </if>
+        and
+            <if test="verificationCode">
+              contact=#{contact}
+            </if>
+        and
+            <if test="receiveDate">
+              verification_code=#{verificationCode}
+            </if>
+        and
+            <if test="addressSource">
+              address_source=#{addressSource}
+            </if>
+        and
+            <if test="addressDest">
+              address_dest=#{addressDest}
+            </if>
+        and
+            <if test="expressStatus">
+              express_status=#{expressStatus}
+            </if>
     </update>
 
     <select id="queryExpressInfo" resultMap="expressResult">
-        SELECT *
+        SELECT
+        express_no, from_date, arrive_date, receive_date, company
+        , consignee, contact, verification_code, address_source, address_dest, express_status
+        FROM   express.expressinfo
+        where
+          1=1
+        <if test="contact!=null and expressNo==null">
+            and contact=#{contact}
+        </if>
+        <if test="expressNo!=null and contact=null">
+            and express_no=#{expressNo}
+        </if>
+        <if test="contact!=null and expressNo!=null">
+            and contact=#{contact} and express_no=#{expressNo}
+        </if>
+    </select>
+
+    <select id="getExpressInfoById" resultMap="expressResult">
+        SELECT
+        express_no, from_date, arrive_date, receive_date, company
+           , consignee, contact, verification_code, address_source, address_dest, express_status
         FROM express.expressinfo
         where
+          id=#{id}
     </select>
 
     <delete id="deleteExpress">
