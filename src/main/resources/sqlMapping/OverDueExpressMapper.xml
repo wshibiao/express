@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.express.dao.ExpressDao">
+	<resultMap id="expressShelfResult" type="com.express.model.OverDueExpress">
+		<id property="shelfId" column="shelf_id" jdbcType="INTEGER" />
+		<result property="expressInfoId" column="expressinfo_id" jdbcType="INTEGER" />
+		<result property="createDate" column="create_date" jdbcType="DATE" />
+		<result property="status" column="shelf_status" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<insert id="insertOverDueExpress" useGeneratedKeys="true"
+		keyProperty="shelfId">
+		insert into overdueexpress values
+		(#{shelfId},#{expressInfoId},#{createDate},#{status});
+	</insert>
+
+	<update id="updateExpressShelf">
+		update overdueexpress
+		<set>
+			<if test="expressInfoId != null">
+				expressinfo_id = #{expressInfoId},
+			</if>
+			<if test="createDate != null">
+				create_date = #{createDate},
+			</if>
+			<if test="status != null">
+				shelf_status = #{status}
+			</if>
+		</set>
+		where shelf_id = #{shelfId}
+	</update>
+
+	<select id="queryShelfByParams" resultMap="expressShelfResult">
+		select shelf_id,expressinfo_id,create_date,shelf_status
+		from overdueexpress
+		<where>
+			<if test="shelfId != null">
+				shelf_id = #{shelfId}
+			</if>
+			<if test="expressInfoId != null">
+				and expressinfo_id = #{expressInfoId}
+			</if>
+			<if test="createDate != null">
+				and create_date = #{createDate}
+			</if>
+			<if test="status != null">
+				and shelf_status = #{status}
+			</if>
+		</where>
+	</select>
+
+</mapper> 
