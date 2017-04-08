@@ -27,9 +27,11 @@ public class OverDueExpressServiceImpl implements OverDueExpressService {
         List<OverDueExpress> overDueExpresses=overDueExpressDao.queryALLShelf();
         //获取所有联系方式
         List contacts=new ArrayList();
-        for (OverDueExpress overDueExpress :
-                overDueExpresses) {
-            contacts.add(overDueExpress.getExpress().getContact());
+        if (overDueExpresses.size()>0) {
+            for (OverDueExpress overDueExpress :
+                    overDueExpresses) {
+                contacts.add(overDueExpress.getExpress().getContact());
+            }
         }
        return contacts;
     }
