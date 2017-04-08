@@ -24,9 +24,12 @@ public class SendSMSTimer implements IExecuteTimer {
 	@Override
 	public void execute() {
 		//获取隔日件的收件人联系方式
+		String smsContent="";
 		List contacts=overDueExpressService.getContactsWithOverDue();
 		//发送短信
-		smsService.sendSMS("ha",contacts);
+		if (contacts.size()>0){
+			smsService.sendSMS(smsContent,contacts);
+		}
 
 	}
 	
