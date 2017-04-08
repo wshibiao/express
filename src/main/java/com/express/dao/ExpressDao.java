@@ -3,6 +3,8 @@ package com.express.dao;
 import com.express.model.Express;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 /**
  * Created by wshibiao on 2017/4/6.
  */
@@ -25,7 +27,7 @@ public interface ExpressDao {
      * @param expressNo
      * @return
      */
-    public Express queryExpressInfo(@Param("contact")String contact, @Param("expressNo")String expressNo);
+    public List<Express> queryExpressInfo(@Param("contact")String contact, @Param("expressNo")String expressNo);
 
     /**
      *删除快递
